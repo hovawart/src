@@ -11,9 +11,21 @@
         height: 100vh;
         overflow: hidden;
       }
-      .col {
+      #main.edit .col {
         width: 50vw;
         height: 50vh;
+      }
+      #main.edit #preview-iframe {
+        height: 50vh;
+      }
+      #main #preview-iframe {
+        height: 100vh;
+      }
+      .editor-container {
+        display: none;
+      }
+      #main.edit .editor-container {
+        display: unset;
       }
       .editor {
         width: 100%;
@@ -33,15 +45,15 @@
   <body>
     <div id="main" class="fluid-container">
       <div class="row">
-        <div class="col g-0">
+        <div class="col g-0 editor-container">
           <div id="html" class="editor"></div>
         </div>
-        <div class="col g-0">
+        <div class="col g-0 editor-container">
           <div id="script" class="editor"></div>
         </div>
       </div>
       <div class="row">
-        <div class="col g-0">
+        <div class="col g-0 editor-container">
           <div id="css" class="editor"></div>
         </div>
         <div id="preview" class="col g-0">
@@ -272,6 +284,14 @@ h1 {
 script: `console.log('flight')
 `
       });
+    </script>
+    <script>
+      console.log(location.href);
+      if (location.href.indexOf("mode=edit") > -1) {
+        document.getElementById("main").classList.add("edit");
+      } else {
+        document.getElementById("main").classList.remove("edit");
+      }
     </script>
   </body>
 </html>
