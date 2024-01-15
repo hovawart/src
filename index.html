@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.27.0/min/vs/loader.js"></script>
     <script>
-      let run = () => {
+      let run = (values) => {
         require.config({
           paths: { vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.27.0/min/vs" }
         });
@@ -97,17 +97,17 @@
           monaco.editor.setTheme('default')
 
           var htmlEditor = monaco.editor.create(document.getElementById("html"), {
-            value: "<h1>HTML</h1>",
+            value: values.html,
             language: "html",
             automaticLayout: true
           });
           var cssEditor = monaco.editor.create(document.getElementById("css"), {
-            value: "h1 { color: darkred; }",
+            value: values.css,
             language: "css",
             automaticLayout: true
           });
           var scriptEditor = monaco.editor.create(document.getElementById("script"), {
-            value: "console.log('hello')",
+            value: values.script,
             language: "javascript",
             automaticLayout: true
           });
@@ -133,7 +133,146 @@
           updatePreivew();
         });
       };
-      run();
+      run({
+        html: `
+        <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Build from Image: Project 2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Flight</h1>
+      <img src="https://xc4fqr.csb.app/img/banner.jpg" alt="plane wing in a blue sky" class="banner" />
+
+      <p>
+        <img src="https://xc4fqr.csb.app/img/plane.jpg" alt="a historic plane flying" class="img1" />
+        Flight or flying is the process by which an object moves through a space
+        without contacting any planetary surface, either within an atmosphere
+        (i.e. air flight or aviation) or through the vacuum of outer space (i.e.
+        spaceflight). This can be achieved by generating aerodynamic lift
+        associated with gliding or propulsive thrust, aerostatically using
+        buoyancy, or by ballistic movement.
+      </p>
+      <p>
+        Many things can fly, from animal aviators such as birds, bats and
+        insects, to natural gliders/parachuters such as patagial animals,
+        anemochorous seeds and ballistospores, to human inventions like aircraft
+        (airplanes, helicopters, airships, balloons, etc.) and rockets which may
+        propel spacecraft and spaceplanes.
+      </p>
+      <p>
+        <img src="https://xc4fqr.csb.app/img/modern-plane.jpg" alt="modern plane" class="img2" />
+        The engineering aspects of flight are the purview of aerospace
+        engineering which is subdivided into aeronautics, the study of vehicles
+        that travel through the atmosphere, and astronautics, the study of
+        vehicles that travel through space, and ballistics, the study of the
+        flight of projectiles.
+      </p>
+
+      <p>
+        The Wright brothers, Orville Wright (August 19, 1871 – January 30, 1948)
+        and Wilbur Wright (April 16, 1867 – May 30, 1912), were American
+        aviation pioneers generally credited with inventing, building, and
+        flying the world's first successful airplane. They made the first
+        controlled, sustained flight of an engine-powered, heavier-than-air
+        aircraft with the Wright Flyer on December 17, 1903, four miles (6 km)
+        south of Kitty Hawk, North Carolina, at what is now known as Kill Devil
+        Hills. In 1904 the Wright brothers developed the Wright Flyer II, which
+        made longer-duration flights including the first circle, followed in
+        1905 by the first truly practical fixed-wing aircraft, the Wright Flyer
+        III. The brothers' breakthrough invention was their creation of a
+        three-axis control system, which enabled the pilot to steer the aircraft
+        effectively and to maintain its equilibrium. Their system of aircraft
+        controls made fixed-wing powered flight possible and remains standard on
+        airplanes of all kinds.
+      </p>
+      <p>
+        Their first U.S. patent did not claim invention of a flying machine, but
+        rather a system of aerodynamic control that manipulated a flying
+        machine's surfaces. From the beginning of their aeronautical work, the
+        brothers focused on developing a reliable method of pilot control as the
+        key to solving "the flying problem". This approach differed
+        significantly from other experimenters of the time who put more emphasis
+        on developing powerful engines.[13] Using a small home-built wind
+        tunnel, the Wrights also collected more accurate data than any before,
+        enabling them to design more efficient wings and propellers
+      </p>
+
+      <div class="btn-group">
+        <a href="https://en.wikipedia.org/wiki/Flight" target="_blank">
+          <button class="btn">Read more about flight on Wikipedia</button>
+        </a>
+      </div>
+      <div class="btn-group">
+        <a href="https://en.wikipedia.org/wiki/Wright_brothers" target="_blank">
+          <button class="btn">
+            Read more about the Wright Brothers on Wikipedia
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
+`,
+        css: `body {
+  background-color: #9ce9fb;
+}
+h1 {
+  float: left;
+  position: absolute;
+  margin-left: 20px;
+  color: white;
+}
+
+.container {
+  padding: 20px;
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.banner {
+  width: 100%;
+}
+
+.img1 {
+  float: left;
+  width: 200px;
+  margin-right: 10px;
+}
+
+.img2 {
+  float: right;
+  width: 200px;
+  margin-left: 10px;
+}
+
+.btn-group {
+  text-align: center;
+}
+
+.btn {
+  background-color: #0d4e9e;
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  margin: 5px;
+  border: none;
+  font-weight: bolder;
+}
+
+.btn:hover {
+  background-color: #4492f2;
+}
+`,
+script: `console.log('flight')
+`
+      });
     </script>
   </body>
 </html>
