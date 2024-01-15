@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+      #main {
+        height: 100vh;
+        overflow: hidden;
+      }
+      div {
+        border: 1px solid black;
+      }
+      .col {
+        width: 50vw;
+        height: 50vh;
+        padding: 10px;
+      }
+      textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border: none;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" class="fluid-container">
+      <div class="row">
+        <div id="html" class="col">
+          <textarea id="html-text"></textarea>
+        </div>
+        <div id="script" class="col">
+          <textarea id="script-text"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div id="css" class="col">
+          <textarea id="css-text"></textarea>
+        </div>
+        <div id="preview" class="col">
+          <iframe id="preview-iframe"></iframe>
+        </div>
+      </div>
+    </div>
+    <template id="src">
+      <!DOCTYPE=html>
+      <html lang="en">
+        <head>
+          <title>Learn to Decode</title>
+          <style>
+            ${style}
+          </style>
+        </head>
+        <body>
+          ${body}
+          <script>
+            ${script}
+          </script>
+        </body>
+      </html>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+      const updatePreivew = function(event) {
+        let template = document.getElementById("src").innerHTML;
+        template = template.replace("${style}", document.getElementById("css-text").value);
+        template = template.replace("${body}", document.getElementById("html-text").value);
+        template = template.replace("${script}", document.getElementById("script-text").value);
+        document.getElementById("preview-iframe").srcdoc = template;
+      }
+
+      document.getElementById("html-text").addEventListener("keyup", function(event) {
+        updatePreivew();
+      });
+      document.getElementById("css-text").addEventListener("keyup", function(event) {
+        updatePreivew();
+      });
+      document.getElementById("script-text").addEventListener("keyup", function(event) {
+        updatePreivew();
+      });
+
+    </script>
+  </body>
+</html>
